@@ -48,6 +48,19 @@ if search_query:
 else:
     filtered_data = data
 
+# --- Sorting Options ---
+sort_by = st.selectbox("Sort By:", ["Price (Low to High)", "Price (High to Low)", "Rating (High to Low)", "Rating (Low to High)"])
+
+# Sorting Logic
+if sort_by == "Price (Low to High)":
+    filtered_data = filtered_data.sort_values(by="price", ascending=True)
+elif sort_by == "Price (High to Low)":
+    filtered_data = filtered_data.sort_values(by="price", ascending=False)
+elif sort_by == "Rating (High to Low)":
+    filtered_data = filtered_data.sort_values(by="rating", ascending=False)
+elif sort_by == "Rating (Low to High)":
+    filtered_data = filtered_data.sort_values(by="rating", ascending=True)
+
 # Recommend Best Store Button (comes after search bar, before cards)
 recommendation = None
 if st.button("Recommend Best Store"):
